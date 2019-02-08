@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+	<footer id="colorlib-footer" role="contentinfo">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row row-pb-md">
+				<div class="col-md-3 colorlib-widget">
+						<h3>Head Office</h3>
+						<ul class="colorlib-footer-links">
+							<li>1-16B,Near Srinivasa center,<br>Nandyal,Kurnool.</li>
+							<li><a href="tel://1234567920"><i class="icon-phone"></i> +91 9666630916</a></li>
+							<li><a href="mailto:info@healthcare.com"><i class="icon-mail"></i> info@healthcare.com</a></li>
+							<li><a href="https://healthcare.com"><i class="icon-location4"></i> healthcare.com</a></li>
+{#							<li>Mon-Thu: 9:30 – 21:00</li>#}
+{#							<li>Fri: 6:00 – 21:00</li>#}
+{#							<li>Sat: 10:00 – 15:00</li>#}
+						</ul>
+					</div>
+					<div class="col-md-2 colorlib-widget">
+						<h3>Departments</h3>
+						<p>
+							<ul class="colorlib-footer-links">
+								<li><a href="javascript:void(0)">Neurology</a></li>
+								<li><a href="javascript:void(0)">Traumotology</a></li>
+								<li><a href="javascript:void(0)">Gynaecology</a></li>
+								<li><a href="javascript:void(0)">Nephrology</a></li>
+								<li><a href="javascript:void(0)">Cardiology</a></li>
+								<li><a href="javascript:void(0)">Pulmonary</a></li>
+							</ul>
+						</p>
+					</div>
+					<div class="col-md-2 colorlib-widget">
+						<h3>Useful Links</h3>
+						<p>
+							<ul class="colorlib-footer-links">
+
+									<li class="active"><a href=/home/?type=homepage">Home</a></li>
+									<li class="has-dropdown"><a href="/doctorlogin/?type=H_Doctor">Doctors</a></li>
+									<li><a href="/patientlogin/?type=H_patient">Patients</a></li>
+									<li class="has-dropdown"><a href="/diseases/">Diseases</a></li>
+									<li class="has-dropdown"><a href="/viewmedicines/">Medicines</a></li>
+									<li><a href="/about_us/">About Us</a></li>
+							</ul>
+						</p>
+					</div>
+
+{#					<div class="col-md-2 colorlib-widget">#}
+{#						<h3>Support</h3>#}
+{#						<p>#}
+{#							<ul class="colorlib-footer-links">#}
+{#								<li><a href="#">Documentation</a></li>#}
+{#								<li><a href="#">Forums</a></li>#}
+{#								<li><a href="#">Help &amp; Support</a></li>#}
+{#								<li><a href="#">Scholarship</a></li>#}
+{#								<li><a href="#">Student Transport</a></li>#}
+{#								<li><a href="#">Release Status</a></li>#}
+{#							</ul>#}
+{#						</p>#}
+{#					</div>#}
+
+				<div class="col-md-5 colorlib-widget">
+					<h3>Feed Back</h3>
+                    <div class="col-md-12">
+                        <font color="green">{{ fmessage }}</font>
+                    </div>
+					<form class="contact-form" action="/feedback/" method="post">
+                        {% csrf_token %}
+						<div class="form-group">
+							<label for="name" class="sr-only">Name</label>
+							<input type="name" class="form-control" id="name" name="name" placeholder="Name">
+						</div>
+						<div class="form-group">
+							<label for="email" class="sr-only">Email</label>
+							<input type="email" class="form-control" id="email" name="email" placeholder="Email">
+						</div>
+						<div class="form-group">
+							<label for="message" class="sr-only">Message</label>
+							<textarea class="form-control" id="message" rows="3" name="message" placeholder="Message"></textarea>
+						</div>
+						<div class="form-group">
+							<input type="submit" id="btn-submit" class="btn btn-primary btn-send-message btn-md" value="Send Message">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="row copyright">
+			<div class="col-md-12 text-center">
+				<p>
+					<small class="block">&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --><!--Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | -->
+Designed And Developed  <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Rajesh</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></small>
+{#		<small class="block">Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a> , <a href="https://www.pexels.com/" target="_blank">Pexels</a>#}
+                </small>
+				</p>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>

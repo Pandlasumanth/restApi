@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+        {% load staticfiles %}
+        <title> Healthcare | Diseases</title>
+        {% include 'header-scripts.html' %}
+	</head>
+	<body>
+	<div id="page">
+	{% include 'header.html' %}
+
+    </div>
+{% if type == 'diseases' %}
+    {% if diseases %}
+    <div class="container" style="background: #f7ecb5;padding: 10px;" id="generic">
+    <div class="col-md-12">
+    <table class="table table-responsive table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Disease  Name</th>
+            <th>Disease Type</th>
+            <th>Disease Symptom</th>
+{#            <th>Medicine pricicription</th>#}
+        </tr>
+        </thead>
+        <tbody>
+             {% for x in diseases %}
+
+            <tr>
+                <td>{{ x.diseases_name }}</td>
+                <td>{{ x.diseases_type }}</td>
+                <td>{{ x.diseases_syptom }}</td>
+{#                <td>{{ x.medicine_pricicription }}</td>#}
+
+            </tr>
+                {% endfor %}
+
+        </tbody>
+    </table>
+
+
+    </div>
+    </div>
+        {% else %}
+        <div class="container" style="background: #f7ecb5;padding: 10px;" id="generic">
+    <div class="col-md-12">
+    <table class="table table-responsive table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Disease  Name</th>
+            <th>Disease Type</th>
+            <th>Disease Symptom</th>
+{#            <th>Medicine pricicription</th>#}
+        </tr>
+        </thead>
+        <tbody>
+
+
+            <tr>
+                <td colspan="3"> No Data Available</td>
+{#                <td>{{ x.medicine_pricicription }}</td>#}
+
+            </tr>
+
+
+        </tbody>
+    </table>
+
+
+    </div>
+    </div>
+    {% endif %}
+    {% endif %}
+{% load staticfiles %}
+    {% include 'footer-scripts.html' %}
+    {% include 'footer.html' %}
+
+    </body>
+</html>

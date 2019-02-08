@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>header</title>
+</head>
+<body>
+	<nav class="colorlib-nav" role="navigation">
+		<div class="top-menu">
+			{% include 'header1.html' %}
+			<div class="menu-wrap">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-8">
+							<div class="menu-1">
+								<ul>
+
+									<li class="active"><a href="/home/?type=homepage">Home</a></li>
+									<li class="has-dropdown">
+										<a href="/doctorlogin/?type=H_Doctor">Doctors</a>
+										<ul class="dropdown">
+											<li><a href="/doctorlogin/?type=H_Doctor"> Doctor Login</a></li>
+										</ul>
+									</li>
+									<li><a href="/patientlogin/?type=H_patient">Patients</a></li>
+									<li class="has-dropdown">
+										<a href="/diseases/">Diseases</a>
+{#										<ul class="dropdown">#}
+{#											<li><a href="departments-single.html">Plasetic Surgery Department</a></li>#}
+{#											<li><a href="departments-single.html">Dental Department</a></li>#}
+{#											<li><a href="departments-single.html">Psychological Department</a></li>#}
+{#										</ul>#}
+									</li>
+									<li class="has-dropdown">
+										<a href="/viewmedicines/">Medicines</a>
+
+									</li>
+
+									<li><a href="/about_us/">About Us</a></li>
+									<li><a href="/admin/" target="_blank">ADMIN</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+</body>
+</html>

@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <title>Healthcare | Doctor Home</title>
+    {% include 'header-scripts.html' %}
+
+</head>
+<body>
+
+
+	<div id="page">
+	<nav class="colorlib-nav" role="navigation">
+		<div class="top-menu">
+			{% include 'header1.html' %}
+			<div class="menu-wrap">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="menu-1">
+								<ul>
+									<li class="active"><a href="/doctorlogin/?type=H_Doctor">Home</a></li>
+                                    <li><a href="/DoctorProfile/?id={{ ddetails.email }}">View Profile</a></li>
+									<li><a href="/viewmedicinesd/?id={{ ddetails.email }}">View Medicines</a></li>
+									<li><a href="/viewdiseasesd/?id={{ ddetails.email }}">View Dieseases</a></li>
+                                    <li><a href="/viewpatients/?id={{ ddetails.email }}" >View Patients</a></li>
+									<li><a href="/viewrequests/?id={{ ddetails.email }}">View Requests</a></li>
+									<li><a href="/ChangepasswordD/?id={{ ddetails.email }}">Change Password</a></li>
+									<li><a href="/dlogout/">LogOut</a></li>
+
+
+
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+    </div>
+<div class="container" style="background: #f7ecb5;padding: 20px;">
+    <div class="col-md-3">
+        {% if ddetails %}
+
+             <div class="container" >
+             {% if ddetails.doctor_image == '' %}
+            <img src="{% static 'images/../healthcareapp/static/doctor/noimage.jpg' %}" width="100" height="100" style="border:1px solid #0b0b0b;border-radius: 50%">
+                 {% else %}
+                             <img src="{% static 'images/../healthcareapp/static/doctor/' %}{{ ddetails.doctor_image }}" width="100" height="100" style="border:1px solid #0b0b0b;border-radius: 50%">
+
+                 {% endif %}
+             <b><p>Welcome Mr/Mrs<span><font color="green">  {{ ddetails.name }}</font></span></p></b>
+             </div>
+
+        {% endif %}
+
+    </div>
+{% if type == 'd_profile' %}
+    <div class="col-md-9">
+        <div class="row form-group">
+                    <div class="col-md-6">
+                        <label for="name"> Name:<font color="purple"> {{ profile.name}}</font></label>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="age">Designation :<font color="purple">  {{ profile.designation }}</font></label>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label for="name">Contact Number : <font color="purple"> {{ profile.contact }}</font></label>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-6">
+                        <label for="fname">Email : <font color="purple"> {{ profile.email }}</font></label>
+
+                    </div>
+
+            </div>
+    <div class="row form-group">
+                    <div class="col-md-3">
+                        <a class="button btn-primary btn-big" href="/openupdatedprofile/?email={{ profile.email }}">Update Profile</a>
+                    </div>
+                </div>
+{% endif %}
+{% if type == 'medicines' %}
+ {% if generic %}
+     <div class="col-md-9">
+                <div class="col-md-12">
+                <div> <h3><font color="#9bdf46"> Generic Medicines</font> </h3></div>
+                    <table class="table table-striped table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Medicine Name</th>
+                                <th>Medicine Price</th>
+                                <th>Medicine Prescription</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          {% for x in generic %}
+                            <tr>
+
+
+                                    <td>{{ x.medicine_name }}</td>
+                                    <td>{{ x.medicine_price }}</td>
+                                    <td>{{ x.medicine_prescription }}</td>
+
+
+                            </tr>
+                         {% endfor %}
+                        </tbody>
+                    </table>
+
+                    </div>
+
+
+ {% else %}
+     <div class="col-md-9">
+            <div class="col-md-12">
+            <div > <h3><font color="red"> Generic Medicines</font> </h3></div>
+                    <table class="table table-striped table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Medicine Name</th>
+                                <th>Medicine Price</th>
+                                <th>Medicine Prescription</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+
+
+                                    <td colspan="3">No Data Available</td>
+
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    </div>
+        </div>
+{% endif %}
+    {% if ngeneric %}
+         <div class="col-md-9">
+                <div class="col-md-12">
+                    <div> <h3><font color="#9bdf46">Non Generic Medicines</font> </h3></div>
+                    <table class="table table-striped table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Medicine Name</th>
+                                <th>Medicine Price</th>
+                                <th>Medicine prescription</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                                        {% for x in ngeneric %}
+
+                            <tr>
+
+                                    <td>{{ x.medicine_name }}</td>
+                                    <td>{{ x.medicine_price }}</td>
+                                    <td>{{ x.medicine_prescription }}</td>
+
+
+                            </tr>
+                         {% endfor %}
+                        </tbody>
+                    </table>
+
+                    </div>
+
+            </div>
+        {% else %}
+        <div class="col-md-9">
+            <div class="col-md-12">
+            <div > <h3><font color="red">Non Generic Medicines</font> </h3></div>
+                    <table class="table table-striped table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Medicine Name</th>
+                                <th>Medicine Price</th>
+                                <th>Medicine Prescription</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+
+                                    <td colspan="3">No Data Available</td>
+
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    </div>
+        </div>
+</div>
+{% endif %}
+{% endif %}
+{% if type == 'diseases' %}
+    {% if diseases %}
+     <div class="col-md-9">
+                <div class="col-md-12">
+                <div> <h3><font color="#9bdf46">Diseases</font> </h3></div>
+    <table class="table table-responsive table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Disease  Name</th>
+            <th>Disease Type</th>
+            <th>Disease Symptom</th>
+{#            <th>Medicine pricicription</th>#}
+        </tr>
+        </thead>
+        <tbody>
+             {% for x in diseases %}
+
+            <tr>
+                <td>{{ x.diseases_name }}</td>
+                <td>{{ x.diseases_type }}</td>
+                <td>{{ x.diseases_syptom }}</td>
+{#                <td>{{ x.medicine_pricicription }}</td>#}
+
+            </tr>
+                {% endfor %}
+
+        </tbody>
+    </table>
+
+
+    </div>
+    </div>
+        {% else %}
+        <div class="col-md-9">
+                <div class="col-md-12">
+                    <div> <h3><font color="#9bdf46"> Diseases</font> </h3></div>
+    <table class="table table-responsive table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Disease  Name</th>
+            <th>Disease Type</th>
+            <th>Disease Symptom</th>
+{#            <th>Medicine pricicription</th>#}
+        </tr>
+        </thead>
+        <tbody>
+
+
+            <tr>
+                <td colspan="3"> No Data Available</td>
+{#                <td>{{ x.medicine_pricicription }}</td>#}
+
+            </tr>
+
+
+        </tbody>
+    </table>
+
+
+    </div>
+    </div>
+    {% endif %}
+    {% endif %}
+
+{% if type == 'patients' %}
+{% if patients %}
+     <div class="col-md-9" id="patients" >
+        <table class="table table-responsive table-striped">
+    <thead>
+    <tr>
+        <th>Patient Name</th>
+        <th>Patient Gender</th>
+        <th>Patient Email</th>
+    </tr>
+    </thead>
+    <tbody>
+     {% for x in patients %}
+        <tr>
+            <td>{{ x.Name }}</td>
+            <td>{{ x.Gender }}</td>
+            <td>{{ x.Email }}</td>
+            <td><span>{% if x.patient_status == 0 %}<span style="color: red"> In Offline</span>{% else %}
+           <span style="color: green"> In Online</span> {% endif %}</span></td>
+        </tr>
+     {% endfor %}
+
+    </tbody>
+</table>
+    </div>
+    {% else %}
+      <div class="col-md-9" id="patients" >
+        <table class="table table-responsive table-striped">
+    <thead>
+    <tr>
+        <th>Patient Name</th>
+        <th>Patient Gender</th>
+        <th>Patient Email</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="3">No Data Available</td>
+        </tr>
+    </tbody>
+</table>
+    </div>
+{% endif %}
+{% endif %}
+{% if type == 'requests' %}
+{% if requests %}
+    <div class="col-md-9">
+
+        {% for x in demails %}
+            <div class="col-md-9" style="border: 1px solid #9bdf46">
+                <div class="col-md-9" style="float: left">
+                <h4>{{ x.sender }}</h4>
+                <p> Last Message By Patient :{{ x.message }}</p>
+                </div>
+            <div class="col-md-3" style="float: right">
+            <a href="/sendresponse/?id={{ x.doctor_email }}&pemail={{ x.patient_email }}">Send Reply</a>
+            </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+
+    <div class="col-md-9">
+
+            <div class="col-md-9" style="border: 1px solid #9bdf46">
+                <div class="col-md-9" style="float: left">
+
+                <p>No Requests Are Found</p>
+                </div>
+
+            </div>
+    </div>
+{% endif %}
+{% endif %}
+
+{% if patientreq %}
+    <div class="col-md-6">
+        <div class="col-md-12">
+            <h3><i class="fa fa-circle text-success"></i> {{ pname }} </h3>
+            <div class="col-md-12 chatarea">
+                {% if chathistory %}
+                    <div>
+                        <ul class="col-md-12" style="list-style: none">
+                            {% for x in chathistory %}
+                                {% if x.sender == dname %}
+                                    <div>
+                                        <li style="float: right" class="col-md-12" ><b> You </b>:{{ x.message }}</li>
+                                    </div>
+                                {% elif x.sender == pname %}
+                                    <div>
+                                <li style="float: left" class="col-md-12"><b>{{ x.sender }}</b> : {{ x.message }}</li>
+
+                                    </div>
+                                {% endif %}
+
+                        {% endfor %}
+                        </ul>
+                    </div>
+                    {% else %}
+                <h6>No conversation </h6>
+                    {% endif %}
+            </div>
+            <form action="/sendresmessage/?email={{ pemail }}&demail={{ demail }}" method="post">
+                {% csrf_token %}
+                <div>
+                    <textarea name="chat" cols="50" rows="2">
+
+                    </textarea>
+                    <input type="hidden" value="{{ pname }}" name="pname">
+                    <input type="hidden" value="{{ dname }}" name="dname">
+                    </div>
+                    <div>
+                    <input type="submit" value="Send " class="button btn-primary">
+
+                    </div>
+            </form>
+        </div>
+    </div>
+{% endif %}
+{% if sendresmessage %}
+    <div class="col-md-6">
+        <div class="col-md-12">
+            <h3><i class="fa fa-circle text-success"></i> {{ pname }} </h3>
+            <div class="col-md-12 chatarea">
+                {% if chathistory %}
+                    <div>
+                          <ul class="col-md-12" style="list-style: none">
+                            {% for x in chathistory %}
+                                {% if x.sender == dname %}
+                                    <div>
+                                        <li style="float: right" class="col-md-12" ><b>You</b> :{{ x.message }}</li>
+
+                                    </div>
+                                {% elif x.sender == pname %}
+                                    <div>
+                                <li style="float: left" class="col-md-12"><b>{{ x.sender }}</b>:{{ x.message }} </li>
+
+                                    </div>
+                                {% endif %}
+
+                        {% endfor %}
+                        </ul>
+                    </div>
+                    {% else %}
+                <h6>No conversation </h6>
+                    {% endif %}
+            </div>
+            <form action="/sendresmessage/?email={{ pemail }}&demail={{ demail }}" method="post">
+                {% csrf_token %}
+                <div>
+                    <textarea name="chat" cols="50" rows="2">
+
+                    </textarea>
+                    <input type="hidden" value="{{ pname }}" name="pname">
+                    <input type="hidden" value="{{ dname }}" name="dname">
+                    </div>
+                    <div>
+                    <input type="submit" value="Send " class="button btn-primary">
+
+                    </div>
+
+            </form>
+            <div>
+                {{message }}
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if type == 'doctor_change_password' %}
+    <div class="col-md-9">
+    <div class="col-md-12">
+        <form action="/doctor_change_password/" onsubmit="return checkpass()" method="post">
+            {% csrf_token %}
+        <div class=" row form-group">
+            <div class="col-md-6">
+                <input type="password" class="form-control" name="password1" id="password1" placeholder="New Password">
+            </div>
+        </div>
+        <div class=" row form-group">
+            <div class="col-md-6">
+                <input type="password" class="form-control" name="password2" id="password2" placeholder="Confirm New Password">
+            </div>
+        </div>
+        <div class="col-md-4">
+
+                <input type="hidden" class="form-control" name="email" id="email" value="{{ ddetails.email }}">
+
+            <input type="submit" class="button btn-primary " value="Change Password" >
+        </div>
+            <div class="col-md-12">
+                <label for="name" id="error"></label>
+            </div>
+
+        </form>
+        <div class="form-group">
+            <div class="col-md-12"><font color="green" size="3">{{ message }}</font> </div>
+        </div>
+        <script>
+            function checkpass() {
+
+                pass1=document.getElementById('password1').value;
+                pass2=document.getElementById('password2').value;
+                if(pass1 != pass2){
+
+                    document.getElementById('error').innerHTML='please enter new password and confirm password same';
+                    document.getElementById('error').style.color='red';
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            }
+        </script>
+    </div>
+    </div>
+{% endif %}
+{% if type == 'doctorupdate' %}
+    <div class="col-md-9 ">
+         <div class="col-md-12">
+             <form action="/UpdateProfileDoctor/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+                <table>
+                    <tr><td><font color="green">{{ message }}</font> </td></tr>
+                    <tr>
+                        <td>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="name">Doctor ID   </label>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <input type="number" class="form-control" name="did" value="{{ ddetails.id }}" readonly placeholder="DoctorId" >
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="name">Doctor Name   </label>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control" name="dname" value="{{ ddetails.name }}"  placeholder="DoctorName" >
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="name">Doctor Contact Number   </label>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control" name="dcontact" value="{{ ddetails.contact }}"  placeholder="Doctor Contact Number" >
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="name">Doctor Desination   </label>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control" name="ddesignation" value="{{ ddetails.designation }}"  placeholder="Doctor Designation" >
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                            <td>
+                                <div class="row form-group">
+                                    <div class="col-md-12">
+                                        <label for="name">Doctor Image   </label>
+                                    </div>
+                                </div>
+                            </td><td>
+                                <div class="row form-group">
+                                    <div class="col-md-12">
+                                        <img src="{% static 'images/../healthcareapp/static/doctor/' %}{{ ddetails.doctor_image }}" width="100px" height="100px" style="border: 2px solid #99ff22 ;box-shadow: #8B8986">
+                                        <input type="file" class="form-control" name="dimage" placeholder="Doctor Image">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    <tr>
+                    <td>
+                                <div class="col-md-12">
+                                    <input type="hidden" name="demail" value="{{ ddetails.email }}">
+                                    <input type="submit" class="btn btn-primary " value="Update" >
+                                </div>
+                            </td>
+                        </tr>
+                </table>
+             </form>
+        </div>
+    </div>
+{% endif %}
+</div>
+</div>
+</div>
+    {% load staticfiles %}
+    {% include 'footer-scripts.html' %}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Title</title>#}
+{#</head>#}
+{#<body>#}
+{#	<footer id="colorlib-footer" role="contentinfo">#}
+{#		<div class="overlay"></div>#}
+{#		<div class="container">#}
+{#			<div class="row row-pb-md">#}
+{#				<div class="col-md-4 colorlib-widget">#}
+{#						<h3>Head Office</h3>#}
+{#						<ul class="colorlib-footer-links">#}
+{#							<li>1-16B,Near Srinivasa center,<br>Nandyal,Kurnool.</li>#}
+{#							<li><a href="tel://1234567920"><i class="icon-phone"></i> +91 9666630916</a></li>#}
+{#							<li><a href="mailto:info@healthcare.com"><i class="icon-mail"></i> info@healthcare.com</a></li>#}
+{#							<li><a href="https://healthcare.com"><i class="icon-location4"></i> healthcare.com</a></li>#}
+{#							<li>Mon-Thu: 9:30 – 21:00</li>#}
+{#							<li>Fri: 6:00 – 21:00</li>#}
+{#							<li>Sat: 10:00 – 15:00</li>#}
+{#						</ul>#}
+{#					</div>#}
+{#					<div class="col-md-4 colorlib-widget" style="text-align: center">#}
+{#						<h3>Departments</h3>#}
+{#						<p>#}
+{#							<ul class="colorlib-footer-links" >#}
+{#								<li><a href="javascript:void(0)">Neurology</a></li>#}
+{#								<li><a href="javascript:void(0)">Traumotology</a></li>#}
+{#								<li><a href="javascript:void(0)">Gynaecology</a></li>#}
+{#								<li><a href="javascript:void(0)">Nephrology</a></li>#}
+{#								<li><a href="javascript:void(0)">Cardiology</a></li>#}
+{#								<li><a href="javascript:void(0)">Pulmonary</a></li>#}
+{#							</ul>#}
+{#						</p>#}
+{#					</div>#}
+{#					<div class="col-md-4 colorlib-widget" style="text-align: center">#}
+{#						<h3>Useful Links</h3>#}
+{#						<p>#}
+{#							<ul class="colorlib-footer-links">#}
+{##}
+{#									<li class="active"><a href=/home/?type=homepage">Home</a></li>#}
+{#									<li class="has-dropdown"><a href="/doctorlogin/?type=H_Doctor">Doctors</a></li>#}
+{#									<li><a href="/patientlogin/?type=H_patient">Patients</a></li>#}
+{#									<li class="has-dropdown"><a href="/diseases/">Diseases</a></li>#}
+{#									<li class="has-dropdown"><a href="/viewmedicines/">Medicines</a></li>#}
+{#									<li><a href="/about_us/">About Us</a></li>#}
+{#							</ul>#}
+{#						</p>#}
+{#					</div>#}
+{##}
+{#					<div class="col-md-2 colorlib-widget">#}
+{#						<h3>Support</h3>#}
+{#						<p>#}
+{#							<ul class="colorlib-footer-links">#}
+{#								<li><a href="#">Documentation</a></li>#}
+{#								<li><a href="#">Forums</a></li>#}
+{#								<li><a href="#">Help &amp; Support</a></li>#}
+{#								<li><a href="#">Scholarship</a></li>#}
+{#								<li><a href="#">Student Transport</a></li>#}
+{#								<li><a href="#">Release Status</a></li>#}
+{#							</ul>#}
+{#						</p>#}
+{#					</div>#}
+{##}
+{#			</div>#}
+{#		</div>#}
+{#		<div class="row copyright">#}
+{#			<div class="col-md-12 text-center">#}
+{#				<p>#}
+{#					<small class="block">&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --><!--Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | -->#}
+{#Designed And Developed  <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Rajesh</a>#}
+{#<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></small>#}
+{#		<small class="block">Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a> , <a href="https://www.pexels.com/" target="_blank">Pexels</a>#}
+{#                </small>#}
+{#				</p>#}
+{#			</div>#}
+{#		</div>#}
+{#	</footer>#}
+{#</body>#}
+{#</html>#}
+</body>
+</html>
