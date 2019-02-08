@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+    <title>Title</title>
+    {% load staticfiles %}
+    <link href="{% static 'css/w3.css' %}" rel="stylesheet">
+    <style>
+        input::placeholder { font-size: 1.2em; font-style: italic; }
+    </style>
+</head>
+<body>
+<div class=" w3-container" style="margin-left: 32%;max-width: 600px">
+    <h2 class=" w3-container w3-center w3-blue" >User Dashboard</h2>
+    <div class="w3-col m12 w3-gray">
+        <div class="w3-col m4 w3-container">
+            <a class="w3-container" href="/home/?id=" style="text-decoration: none;"><span style="color: salmon;font-weight: bold">Home</span></a>
+
+        </div>
+        <div class="w3-col m4 w3-container">
+            <a class="w3-container" href="/updateprofile/?id=" style="text-decoration: none;"><span style="color: salmon;font-weight: bold">Update Profile</span></a>
+        </div>
+        <div class="w3-col m4 w3-container">
+            <a class="w3-container" href="/deleteprofile/?id=" style="text-decoration: none;"><span style="color: salmon;font-weight: bold">Delete Profile</span></a>
+
+        </div>
+
+
+    </div>
+    {% if type == 'dashboard' %}
+     <div class="w3-col m12 ">
+        <div class="w3-col m6">
+            <p>Name</p>
+        </div>
+        <div class="w3-col m6">
+            <p></p>
+        </div>
+
+    </div>
+<div class="w3-col m12 ">
+        <div class="w3-col m6">
+            <p>Contact No</p>
+        </div>
+        <div class="w3-col m6">
+            <p></p>
+        </div>
+
+    </div>
+<div class="w3-col m12 ">
+        <div class="w3-col m6">
+            <p>User Name</p>
+        </div>
+        <div class="w3-col m6">
+            <p></p>
+        </div>
+
+    </div>
+<div class="w3-col m12 ">
+        <div class="w3-col m6">
+            <p>Password</p>
+        </div>
+        <div class="w3-col m6">
+            <p></p>
+        </div>
+
+    </div>
+<div class="w3-col m12 ">
+        <div class="w3-col m6">
+            <p>Image</p>
+        </div>
+        <div class="w3-col m6">
+            <p><img src="" alt=" " width="100px" height="100px"></p>
+            <p></p>
+        </div>
+
+    </div>
+{% endif %}
+
+    {% if type == 'upadteprofile' %}
+    <form method="post" action="/validateUser/" class="w3-container w3-light-blue">
+        {% csrf_token %}
+      <div class="w3-col m12 ">
+        <div class="w3-col m6">
+            <p>Name</p>
+        </div>
+        <div class="w3-col m6">
+            <p><input type="text" required name="name" value=""></p>
+        </div>
+
+    </div>
+<div class="w3-col m12 ">
+        <div class="w3-col m6">
+            <p>Contact No</p>
+        </div>
+        <div class="w3-col m6">
+            <p><input type="number" required name="ucno" value=""></p>
+        </div>
+
+    </div>
+<div class="w3-col m12 ">
+        <div class="w3-col m6">
+            <p>User Name</p>
+        </div>
+        <div class="w3-col m6">
+            <p><input type="text" required name="uname" value=""></p>
+        </div>
+
+    </div>
+<div class="w3-col m12 ">
+        <div class="w3-col m6">
+            <p>Password</p>
+        </div>
+        <div class="w3-col m6">
+            <p><input type="password" name="upass" required value=""></p>
+        </div>
+
+    </div>
+<div class="w3-col m12 ">
+        <div class="w3-col m6">
+            <p>Image</p>
+        </div>
+        <div class="w3-col m6">
+            <p><img src="" alt=" " width="100px" height="100px"></p>
+            <p><input type="file" name="uimg" required></p>
+        </div>
+
+    </div>
+    </form>
+    {% endif %}
+    {% if type == 'deleteprofile' %}
+    hfghfghfg
+    {% endif %}
+    </div>
+
+
+</div>
+</body>
+</html>

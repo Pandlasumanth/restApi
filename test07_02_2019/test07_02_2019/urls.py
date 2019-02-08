@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.views.generic import TemplateView
+
 
 from testapp import views
 
@@ -23,4 +23,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.ShowIndex),
     path('newregister/',views.ShowRegister),
+    path('Register/',views.SaveUser),
+    path('validateUser/',views.ValidateUser),
+    path('updateprofile/',views.UpdateProfile),
+    path('deleteprofile/',views.DeleteProfile),
+    path('home/',views.UDashboard),
 ]
