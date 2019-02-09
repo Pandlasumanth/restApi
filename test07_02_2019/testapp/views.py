@@ -44,24 +44,29 @@ def UDashboard(request):
 
 
 def UpdateUser(request):
+    type=request.GET['id']
     name = request.POST['name']
     cno = request.POST['ucno']
     uname = request.POST['uname']
     upass = request.POST['upass']
-    try:
-        uimg = request.FILES['uimg']
-        print(uimg)
-
-        User_Details.objects.filter(username=uname,password=upass).update(name=name, contact_no=cno, username=uname, password=upass, image=uimg)
-    except:
-        User_Details.objects.filter(username=uname,password=upass).update(name=name, contact_no=cno, username=uname, password=upass)
-    finally:
-        qs=User_Details.objects.get(username=uname,password=upass)
-        return render(request,"dashboard.html",{"type":"updateprofile","data":qs,"msg":"updated successfully"})
+    if type != cno:
+        data_avilable=User_Details.objects.filter(contact_no=cno)
+        if data_avilable:
+            qs = User_Details.objects.get(contact_no=type)
+            return render(request,"dashboard.html",{"type":"updateprofile","data":qs,"msg":"the contact number is already avialable"})
+    else:
+        try:
+            uimg = request.FILES['uimg']
+            User_Details.objects.filter(contact_no=type).update(name=name, contact_no=cno, username=uname, password=upass,image=uimg)
+        except:
+            User_Details.objects.filter(contact_no=type).update(name=name, contact_no=cno, username=uname, password=upass)
+        finally:
+            qs=User_Details.objects.get(contact_no=cno)
+            return render(request,"dashboard.html",{"type":"updateprofile","data":qs,"msg":"updated successfully"})
 
 
 def DeleteUser(request):
     cno=request.POST['cno']
-    User_Details.objects.filter(contact_no=cno)
+    User_Details.objects.filter(contact_no=cno).delete()
 
     return render(request,"index.html",{"msg":"deleted Successfully"})
